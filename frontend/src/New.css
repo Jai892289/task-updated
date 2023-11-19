@@ -1,0 +1,34 @@
+/* .text-area{
+    height: 250px;
+} */
+
+.custom-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .text-area {
+    width: 100%;
+    height: 150px;
+  }
+  
+  .file-label {
+    display: inline-flex;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .file-label p {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 600px) {
+    .file-label {
+      margin: 10px 0;
+    }
+  }
+  
