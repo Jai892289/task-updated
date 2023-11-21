@@ -10,8 +10,22 @@ const Home = () => {
     const items = useSelector(state => state.itemData.items);
 
     useEffect(() => {
-        dispatch(getAllData());
-    }, []);
+        const fetchData = async () => {
+          try {
+            await dispatch(getAllData());
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []); 
+
+    // useEffect(() => {
+    //     dispatch(getAllData());
+    // }, []);
+
+    
 
     const handleBox = (id) => {
         navigate(`/detail/${id}`);

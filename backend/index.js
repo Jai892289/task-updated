@@ -26,7 +26,14 @@ app.use(cors({
   credentials: true,
 }));
 
-mongoose.connect('mongodb://127.0.0.1:27017/employee');
+// mongoose.connect('mongodb://127.0.0.1:27017/employee');
+
+mongoose.connect('mongodb+srv://jgupta324:jai8922@cluster0.jazwwvu.mongodb.net/employee?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+
 
 app.use(upload.fields([
   { name: 'audio', maxCount: 1 },
@@ -89,40 +96,6 @@ app.post('/register', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
-
-// app.post('/register', async (req, res) => {
-//   try {
-//     const { title, description } = req.body;
-//     let audio, video, image;
-
-//     if (req.files) {
-//       audio = req.files['audio'] ? req.files['audio'][0].buffer : null;
-//       video = req.files['video'] ? req.files['video'][0].buffer : null;
-//       image = req.files['image'] ? req.files['image'][0].buffer : null;
-//     }
-
-//     if (!title || !description) {
-//       return res.status(400).json({ error: 'Title and description are required fields.' });
-//     }
-
-//     const newUser = await UserModal.create({ title, description, audio, video, image });
-
-//     const populatedUser = await UserModal.findById(newUser._id).select('title description audio video image check').exec();
-
-//     console.log("populatedUser", populatedUser);
-
-//     res.json({ message: 'Success', user: populatedUser });
-//   } catch (error) {
-//     console.error('Error registering user:', error);
-
-//     console.error('Request Body:', req.body);
-//     console.error('Request Files:', req.files);
-
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
-
 
 app.put('/update/:id', async (req, res) => {
   const { title, description, audio, video, image } = req.body;
